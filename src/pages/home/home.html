@@ -1,17 +1,42 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>GUMEE</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content no-padding>
+  <ion-grid *ngIf="deals">
+    <ion-row>
+      <ion-col ion-col text-left no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+        <ion-searchbar text-left class="searchbar"></ion-searchbar>
+      </ion-col>
+    </ion-row><br>
+    <div *ngFor="let x of deals" (click)="show(x)">
+      <ion-row style="max-height: 50px !important">
+        <ion-col ion-col text-left no-padding col-2 col-sm-2 col-md-2 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+          <ion-avatar item-start>
+            <img class="img" [src]="x.userPhoto || 'https://cdn.iconscout.com/icon/free/png-256/avatar-369-456321.png'">
+          </ion-avatar>
+        </ion-col>
+        <ion-col ion-col text-center text-wrap no-padding col-3 col-sm-3 col-md-3 offset-lg-3 col-lg-6 offset-xl-3
+          col-xl-6>
+
+          <p style="position: relative; top: -7px;"><b>{{ x?.userName }}</b></p>
+          <p style="position: relative; top: -20px;">8 deals</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col ion-col text-center text-wrap no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3
+          col-xl-6>
+          <ion-card class="ion-card" style="background:url(http://hd.wallpaperswide.com/thumbs/black_background_metal_hole_small-t2.jpg)">
+            <p class="paragragh">{{x?.title}}</p>
+            <p class="paragragh1">{{x?.description}}</p>
+            <ion-icon class="icon" name="arrow-forward" style="color:white"></ion-icon>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+
+
+  </ion-grid>
 </ion-content>

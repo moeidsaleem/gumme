@@ -10,6 +10,19 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { ApiProvider } from '../providers/api/api';
+import { HelperProvider } from '../providers/helper/helper';
+import { AuthProvider } from '../providers/auth/auth';
+
+
+//firestore
+import { AngularFireModule} from '@angular/fire';
+import { AngularFirestoreModule} from '@angular/fire/firestore';
+import { AngularFireAuthModule} from '@angular/fire/auth';
+import { DirectivesModule } from '../directives/directives.module';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+
 
 @NgModule({
   declarations: [
@@ -17,11 +30,25 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    NgxQRCodeModule,
+    DirectivesModule,
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyAnCvBpgYkw9VEk5imjWuQNv0HNyHRKcMQ",
+      authDomain: "gummee-dfa2e.firebaseapp.com",
+      databaseURL: "https://gummee-dfa2e.firebaseio.com",
+      projectId: "gummee-dfa2e",
+      storageBucket: "gummee-dfa2e.appspot.com",
+      messagingSenderId: "925797755692"
+    }),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -34,7 +61,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ApiProvider,
+    HelperProvider,
+    AuthProvider,
+    InAppBrowser
   ]
 })
 export class AppModule {}
