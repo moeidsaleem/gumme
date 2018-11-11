@@ -25,7 +25,12 @@ export class QrCouponPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad QrCouponPage');
     this.deal = this.navParams.data;
-    this.value = this.deal.code || 'no-value'
+    this.value = this.deal.code;
+  }
+
+
+  openLink(url){
+    window.open(this.deal.url, '_blank', 'location=yes');
   }
 }
 

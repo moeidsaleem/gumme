@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ErrorHandler } from '@angular/core';
+import { ToastController, AlertController, Spinner, LoadingController } from 'ionic-angular';
 
 /*
   Generated class for the HelperProvider provider.
@@ -9,8 +10,108 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class HelperProvider {
 
-  constructor() {
+
+  loader:any;
+  constructor(private toastCtrl:ToastController, private loadingCtrl:LoadingController,
+    private alertCtrl:AlertController) {
     console.log('Hello HelperProvider Provider');
+
+
   }
+
+
+
+
+
+
+
+  load() {
+    this.loader = this.loadingCtrl.create({
+      content: ''
+    });
+    this.loader.present();
+  }
+
+  dismiss() {
+    if(this.loader){ this.loader.dismiss(); this.loader = null; }
+  }
+
+
+
+  toast(message){
+    return this.toastCtrl.create({
+      message:message,
+      duration:3000,
+      position:'bottomn'
+    }).present();
+  }
+
+
+
+  presentAlert(title, subtitle, buttons) {
+    let alert = this.alertCtrl.create({
+      title: 'Low battery',
+      subTitle: '10% of battery remaining',
+      buttons: ['Dismiss']
+    });
+    alert.present();
+  }
+
+  presentConfirm(title, message, successBtn, onsuccess, cancelBtn,oncancel) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      message: message,
+      buttons: [
+        {
+          text: cancelBtn,
+          role: 'cancel',
+          handler:oncancel
+        },
+        {
+          text: successBtn,
+          handler: onsuccess
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  // presentPrompt(title) {
+  //   let alert = this.alertCtrl.create({
+  //     title: title,
+  //     inputs: [
+  //       {
+  //         name: 'username',
+  //         placeholder: 'Username'
+  //       },
+  //       {
+  //         name: 'password',
+  //         placeholder: 'Password',
+  //         type: 'password'
+  //       }
+  //     ],
+  //     buttons: [
+  //       {
+  //         text: 'Cancel',
+  //         role: 'cancel',
+  //         handler: data => {
+  //           console.log('Cancel clicked');
+  //         }
+  //       },
+  //       {
+  //         text: 'Login',
+  //         handler: data => {
+  //           if (User.isValid(data.username, data.password)) {
+  //             // logged in!
+  //           } else {
+  //             // invalid login
+  //             return false;
+  //           }
+  //         }
+  //       }
+  //     ]
+  //   });
+  //   alert.present();
+  // }
 
 }

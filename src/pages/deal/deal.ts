@@ -1,7 +1,9 @@
+import { HelperProvider } from './../../providers/helper/helper';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { ApiProvider } from '../../providers/api/api';
 
 /**
  * Generated class for the DealPage page.
@@ -17,14 +19,17 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
 })
 export class DealPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private iab:InAppBrowser) {}
+  constructor(public navCtrl: NavController,private helper:HelperProvider, private api:ApiProvider,
+     public navParams: NavParams, private iab:InAppBrowser) {}
 
-  deal
+  deal;
   ionViewDidLoad() {
     console.log('ionViewDidLoad DealPage');
     console.log(this.navParams.data);
     this.deal = this.navParams.data;
   }
+
+
 
   go(){
     //time to check the type of the dealType i.e  instore || online
@@ -45,9 +50,23 @@ export class DealPage {
       }
     }else if(this.deal.dealType == 'online'){
       //open this deal in the URL
-      const browser=this.iab.create(this.deal.url);
-      browser.show()
+     window.open(this.deal.url, '_blank', 'location=yes');
+
     }
   }
 
+
+
+
+
+  addToFavorites(){
+    let deal = this.deal;
+    deal.userId = localStorage.getItem('uid');
+    deal.dealId = deal.id;
+    delete deal.id;
+    this.api.addFavorite(deal).then(resp=>{
+      this.helper.toast(`added to favorites`);
+
+    })
+  }
 }

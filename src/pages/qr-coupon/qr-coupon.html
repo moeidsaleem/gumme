@@ -25,10 +25,12 @@
         <ion-card-header text-center>
           COUPON
         </ion-card-header>
-        <ion-card-content text-center>
+        <ion-card-content text-center >
       <ngx-qrcode [(qrc-value)]="deal.code" style="width:300px;" qrc-class = "test-class"
         qrc-errorCorrectionLevel = "L"></ngx-qrcode>
-
+      <button ion-button full (click)="openLink()">
+        <ion-icon name="arrow-down"></ion-icon>
+      </button>
       </ion-card-content>
     </ion-card>
 

@@ -12,8 +12,22 @@ export class ApiProvider {
 
   constructor(private afs:AngularFirestore) {
     console.log('Hello ApiProvider Provider');
+    //set dummy ID
+    console.log(localStorage.getItem('uid'))
   }
 
+
+
+  /* ----------------- USERS ------------ */
+  createProfile(uid, data){
+    return this.afs.doc('users/'+uid).set(data);
+  }
+  getProfile(uid){
+    return this.afs.doc('users/'+ uid).valueChanges();
+  }
+  updateProfile(uid, info){
+    return this.afs.doc('users/'+uid).update(info);
+  }
 
 
 
@@ -45,6 +59,30 @@ deleteDeal(id){
   return this.afs.doc('deals/'+id).delete();
 }
 
+
+
+/* --------------- CATEGORIES -------------------- */
+
+
+getAllCategories(){
+  return this.afs.collection('categories').snapshotChanges();
+}
+getOnlineCategories(){
+  return this.afs.collection('categories', ref=> ref.where('type','==','online')).snapshotChanges();
+}
+getInstoreCategories(){
+  return this.afs.collection('categories', ref=> ref.where('type','==','instore')).snapshotChanges();
+}
+
+
+/* --------------- FAVORITES -------------------- */
+getUserFavorites(){
+  return this.afs.collection('favorites', ref=> ref.where('userId','==',localStorage.getItem('uid'))).snapshotChanges();
+}
+
+addFavorite(data){
+  return this.afs.collection('favorites').add(data);
+}
 
 
 

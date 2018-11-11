@@ -22,15 +22,24 @@ import { AngularFireAuthModule} from '@angular/fire/auth';
 import { DirectivesModule } from '../directives/directives.module';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { CategoryPage } from '../pages/category/category';
+import { ProfilePage } from '../pages/profile/profile';
+import { FavoritePage } from '../pages/favorite/favorite';
+import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
 
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    FavoritePage,
     HomePage,
+
     TabsPage,
+    CategoryPage,
+    ProfilePage,
+    LoginPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
@@ -53,10 +62,13 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    CategoryPage,
+    ProfilePage,
+    FavoritePage,
+    LoginPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,

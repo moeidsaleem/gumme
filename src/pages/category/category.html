@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>GUMEE</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col ion-col text-left no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+        <ion-searchbar text-left class="searchbar"></ion-searchbar>
+      </ion-col>
+    </ion-row><br>
+
+    <div class="switch-case-div">
+      <ion-segment [(ngModel)]="segment">
+        <ion-segment-button class="segment-btn" value="all">
+          ALL
+        </ion-segment-button>
+        <ion-segment-button class="segment-btn" value="online">
+          Online
+        </ion-segment-button>
+        <ion-segment-button class="segment-btn" value="instore">
+          Instore
+        </ion-segment-button>
+
+      </ion-segment>
+    </div>
+    <div [ngSwitch]="segment" class="Profile" padding class="page-color">
+      <div *ngSwitchCase="'all'">
+        <ion-grid *ngIf="deals">
+          <ion-row *ngFor="let x of deals">
+            <ion-col ion-col text-left no-padding col-2 col-sm-2 col-md-2 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+              <ion-avatar item-start>
+                <img class="img" [src]="x.photo">
+              </ion-avatar>
+            </ion-col>
+            <ion-col ion-col text-left text-wrap no-padding col-9 col-sm-9 col-md-9 offset-lg-3 col-lg-6 offset-xl-3
+              col-xl-6>
+              <p style="position:relative; left:12px; top:5px; font-size:15px"><b>{{x.name}}</b>
+                <br>
+                <small>{{x?.type}}</small>
+              </p>
+            </ion-col>
+            <ion-col ion-col text-left no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6
+              style="font-size:30px;margin-top:17px">
+              <ion-icon class="icon" name="add-circle" color="primary"></ion-icon>
+            </ion-col>
+          </ion-row><br>
+        </ion-grid>
+      </div>
+      <div *ngSwitchCase="'online'">
+        <ion-grid *ngIf="online">
+          <ion-row *ngFor="let x of online">
+            <ion-col ion-col text-left no-padding col-2 col-sm-2 col-md-2 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+              <ion-avatar item-start>
+                <img class="img" [src]="x.photo">
+              </ion-avatar>
+            </ion-col>
+            <ion-col ion-col text-left text-wrap no-padding col-9 col-sm-9 col-md-9 offset-lg-3 col-lg-6 offset-xl-3
+              col-xl-6>
+              <p style="position:relative; left:12px; top:5px; font-size:15px"><b>{{x.name}}</b>
+                <br>
+                <small>{{x?.type}}</small>
+              </p>
+            </ion-col>
+            <ion-col ion-col text-left no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6
+              style="font-size:30px;margin-top:17px">
+              <ion-icon class="icon" name="add-circle" color="primary"></ion-icon>
+            </ion-col>
+          </ion-row><br>
+        </ion-grid>
+      </div>
+      <div *ngSwitchCase="'instore'">
+        <ion-grid *ngIf="instore">
+          <ion-row *ngFor="let x of instore">
+            <ion-col ion-col text-left no-padding col-2 col-sm-2 col-md-2 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+              <ion-avatar item-start>
+                <img class="img" [src]="x.photo">
+              </ion-avatar>
+            </ion-col>
+            <ion-col ion-col text-left text-wrap no-padding col-9 col-sm-9 col-md-9 offset-lg-3 col-lg-6 offset-xl-3
+              col-xl-6>
+              <p style="position:relative; left:12px; top:5px; font-size:15px"><b>{{x.name}}</b>
+                <br>
+                <small>{{x?.type}}</small>
+              </p>
+            </ion-col>
+            <ion-col ion-col text-left no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6
+              style="font-size:30px;margin-top:17px">
+              <ion-icon class="icon" name="add-circle" color="primary"></ion-icon>
+            </ion-col>
+          </ion-row><br>
+        </ion-grid>
+      </div>
+    </div>
+  </ion-grid>
+
+</ion-content>

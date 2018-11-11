@@ -1,19 +1,27 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
-import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+/**
+ * Generated class for the FavoritePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-favorite',
+  templateUrl: 'favorite.html',
 })
-export class HomePage {
+export class FavoritePage{
 
   deals;
+  favorites;
   user;
   constructor(public navCtrl: NavController,private api:ApiProvider) {
-      this.getDeals();
+      this.getFavoritesDeals();
   }
 
 
@@ -28,8 +36,8 @@ this.api.getProfile(localStorage.getItem('uid')).subscribe(resp=>{
 })
 }
 
-getDeals(){
-  this.api.getApprovedDeals().pipe(
+getFavoritesDeals(){
+  this.api.getUserFavorites().pipe(
     map(actions => actions.map(a => {
       const data = a.payload.doc.data();
       const id = a.payload.doc.id;
@@ -44,7 +52,7 @@ getDeals(){
     }))
   ).subscribe(resp=>{
     console.log(resp);
-    this.deals = resp;
+    this.favorites = resp;
   });
 }
   // deals=[

@@ -4,15 +4,11 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header parallax
-	imageUrl="https://ununsplash.imgix.net/photo-1421091242698-34f6ad7fc088?fit=crop&fm=jpg&h=650&q=75&w=950"
-	maximumHeight="350"
-	parallaxColor="#ab26c3">
 
-  <ion-navbar>
-    <ion-title>deal</ion-title>
-  </ion-navbar>
 
+<ion-header>
+    <img *ngIf="deal" [src]="deal.photo || 'https://ununsplash.imgix.net/photo-1421091242698-34f6ad7fc088?fit=crop&fm=jpg&h=650&q=75&w=950'"
+    alt="" style="width:100%;height:300px;margin:0;padding:0;image-rendering: auto;outline:0;">
 </ion-header>
 
 
@@ -25,30 +21,35 @@ basically show the data from the deal here
  -->
 
 
- <ion-img src="https://ununsplash.imgix.net/photo-1421091242698-34f6ad7fc088?fit=crop&fm=jpg&h=650&q=75&w=950" alt="" style="width:100%;height:300px"> </ion-img>
 
  <!-- now for the other shit -->
- <div style="text-align:right">
-<ion-icon name="share"></ion-icon>
-</div>
 
 
 <br>
 <ion-grid *ngIf="deal">
+  <ion-row style="position:absolute;top:0;text-align:right;right:0;margin-right: 12px" >
+    <ion-col  style="font-size:22px;padding-left:1rem;padding-right:1rem" (click)="addToFavorites()">
+            <ion-icon name="star-outline"></ion-icon>
+    </ion-col>
+    <ion-col  style="font-size:22px" >
+        <ion-icon name="share"></ion-icon>
+</ion-col>
+
+
+  </ion-row>
   <ion-row>
-    <ion-col col-12 text-center>
-    <h1>  {{deal.title}} </h1>
-    </ion-col>
-    <ion-col col-4 style="font-size: 30px">
-      {{deal.price}}
-    </ion-col>
-    <ion-col>
+      <ion-col col-4 style="font-size: 30px">
+         <span class="pricex">{{deal.price || '-20%'}} </span>
+        </ion-col>
+    <ion-col col-8 text-left>
+    <h1>  {{deal.title || 'Coupon Title'}} </h1>
       <br>
       <p>
-          {{deal?.description}}
+          {{deal?.description || ' Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis architecto optio expedita voluptas odio eaque eveniet consequatur modi ipsa placeat. Voluptas id nobis aspernatur ab voluptatibus ullam cupiditate. Illo, velit!'}}
         </p>
     </ion-col>
   </ion-row>
+
 
 </ion-grid>
 
