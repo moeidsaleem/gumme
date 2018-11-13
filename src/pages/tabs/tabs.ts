@@ -6,7 +6,9 @@ import {CategoryPage } from '../category/category'
 import { ProfilePage } from '../profile/profile';
 import { FavoritePage } from '../favorite/favorite';
 @Component({
-  templateUrl: 'tabs.html'
+  templateUrl: 'tabs.html',
+
+
 })
 export class TabsPage {
 

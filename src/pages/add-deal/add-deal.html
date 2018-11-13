@@ -1,0 +1,132 @@
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>ADD DEAL</ion-title>
+      <ion-buttons end  (click)="updateProfile()">
+          <button ion-button icon-only >
+              <ion-icon name="sync"></ion-icon>
+            </button>
+        </ion-buttons>
+
+    </ion-navbar>
+    <div class="info" padding>
+      <p class="p">PERSONAL INFORMATION</p>
+
+    </div>
+  </ion-header>
+
+
+  <ion-content padding>
+    <ion-grid>
+    <ion-row>
+        <ion-col no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+            <ion-label error-field no-margin>Title</ion-label>
+            <ion-input class="input" text-left type="text" placeholder="Deal Title" name="title" [(ngModel)]="deal.title"></ion-input>
+            <ion-label error-field no-margin></ion-label>
+             </ion-col>
+    </ion-row><br>
+    <ion-row>
+        <ion-col no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+            <ion-label error-field no-margin>Description</ion-label>
+            <ion-input class="input" text-left type="text" placeholder="Deal description" name="description" [(ngModel)]="deal.description"></ion-input>
+            <ion-label error-field no-margin></ion-label>
+             </ion-col>
+    </ion-row><br>
+      <ion-row>
+          <ion-col no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+              <ion-label error-field no-margin>Brand name</ion-label>
+              <ion-input class="input" text-left type="text" placeholder="Brand Name" name="brand" [(ngModel)]="deal.brand"></ion-input>
+              <ion-label error-field no-margin></ion-label>
+               </ion-col>
+      </ion-row><br>
+
+      <ion-row>
+          <ion-col no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+              <ion-label error-field no-margin>Brand Contact</ion-label>
+              <ion-input class="input" text-left type="text"  placeholder="Enter Brand phone"  name="brandPhone" [(ngModel)]="deal.brandPhone"></ion-input>
+              <ion-label error-field no-margin></ion-label>
+               </ion-col>
+      </ion-row><br>
+
+
+       <ion-row>
+          <ion-col no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+              <ion-label error-field no-margin>url</ion-label>
+              <ion-input class="input" text-left type="phone" placeholder="Enter URL "  name="url" [(ngModel)]="deal.url"></ion-input>
+              <ion-label error-field no-margin></ion-label>
+               </ion-col>
+        </ion-row><br>
+        <ion-row>
+            <ion-col no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+                <ion-label error-field no-margin>Photo</ion-label>
+                <ion-input class="input" text-left type="text" name="photo" [(ngModel)]="deal.photo"></ion-input>
+                <ion-label error-field no-margin></ion-label>
+                 </ion-col>
+        </ion-row><br>
+        <ion-row>
+            <ion-col no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+                <ion-label error-field no-margin>Location</ion-label>
+                <ion-input class="input" text-left type="text" name="location" [(ngModel)]="deal.location"></ion-input>
+                <ion-label error-field no-margin></ion-label>
+                 </ion-col>
+        </ion-row><br>
+        <ion-row>
+            <ion-col no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+                <ion-label error-field no-margin>Coupon Code</ion-label>
+                <ion-input class="input" text-left placeholder="Coupon Code" type="text" name="code" [(ngModel)]="deal.code"></ion-input>
+                <ion-label error-field no-margin></ion-label>
+                 </ion-col>
+        </ion-row><br>
+
+        <ion-row>
+            <ion-col no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6 *ngIf="categories">
+                <ion-label error-field no-margin>Category</ion-label>
+                  <ion-select  (ionChange)="selectChange($event)" placeholder="Enter Brand phone">
+                    <ion-option *ngFor="let x of categories" value='{"categoryId":" {{x.id}} ","category":" {{x.name}} "}' >{{x.name}}</ion-option>
+                  </ion-select>
+                <!-- <ion-label error-field no-margin></ion-label> -->
+                 </ion-col>
+        </ion-row><br>
+
+
+        <ion-row>
+            <ion-col no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+                <ion-label error-field no-margin>Start Date</ion-label>
+                <ion-input class="input" text-left type="date"   name="startDate" [(ngModel)]="deal.startDate"></ion-input>
+                <ion-label error-field no-margin></ion-label>
+                 </ion-col>
+        </ion-row>
+          <br>
+          <ion-row>
+              <ion-col no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+                  <ion-label error-field no-margin>End Date</ion-label>
+                  <ion-input class="input" text-left type="date"   name="endDate" [(ngModel)]="deal.endDate"></ion-input>
+                  <ion-label error-field no-margin></ion-label>
+                   </ion-col>
+          </ion-row><br>
+
+            <ion-row>
+                <ion-col no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+                    <ion-label error-field no-margin>Price / Discount</ion-label>
+                    <ion-input class="input" text-left type="number" placeholder="Price / Discount"   name="price" [(ngModel)]="deal.price"></ion-input>
+                    <ion-label error-field no-margin></ion-label>
+                     </ion-col>
+            </ion-row><br>
+
+            <ion-row>
+              <button ion-button block (click)="submit()" >SUBMIT</button>
+            </ion-row>
+
+
+                <ion-row>
+                    <ion-col ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+
+                    </ion-col>
+
+                    <ion-col ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+
+                      </ion-col>
+                      </ion-row>
+    </ion-grid>
+
+  </ion-content>

@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AddDealPage } from '../add-deal/add-deal';
 
 @Component({
   selector: 'page-home',
@@ -13,9 +14,17 @@ export class HomePage {
   deals;
   user;
   constructor(public navCtrl: NavController,private api:ApiProvider) {
-      this.getDeals();
+    this.getDeals();
   }
 
+
+
+
+  addDeal(){
+    console.log(`adding this deal`);
+    this.navCtrl.push(AddDealPage);
+
+    }
 
 show(x){
   console.log(x);

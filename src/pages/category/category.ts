@@ -1,3 +1,4 @@
+import { HelperProvider } from './../../providers/helper/helper';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
@@ -16,7 +17,7 @@ import { map } from 'rxjs/operators';
 })
 export class CategoryPage {
 
-  constructor(public navCtrl: NavController,private api:ApiProvider,
+  constructor(public navCtrl: NavController,private api:ApiProvider,private helper:HelperProvider,
      public navParams: NavParams) {
   }
 
@@ -36,11 +37,21 @@ this.getCategories();
 
 
   getCategories(){
+    this.getUser();
+
     this.api.getAllCategories().pipe(
       map(actions=> actions.map(a=>{
         const data = a.payload.doc.data();
         const id = a.payload.doc.id;
-        return {id, ...data}
+        let d = this.user.categories.find(element =>{
+          return element === id;
+        })
+        let liked=false;
+        if(d !== undefined){
+          liked = true;
+        }
+
+        return {id,liked, ...data}
       }))
     ).subscribe(resp=>{
       console.log(resp);
@@ -50,8 +61,59 @@ this.getCategories();
     });
   }
 
+user;
+
+  getUser(){
+    return this.api.getProfile(localStorage.getItem('uid')).subscribe(resp=>{
+      this.user = resp;
+    })
+  }
 
 
+  findCategory(categoryId){
+    if(this.user.categories){
+     let d= this.user.categories.find((element)=>{
+        return element === categoryId;
+      });
+      if(d){
+        return true;
+      }else{
+        return false;
+      }
+    }else{
+      return true;
+    }
+  }
+
+
+  removeCategory(item){
+    let index = this.user.categories.indexOf(item);
+    if(index> -1){
+      this.user.categories.splice(index,1);
+      this.updateProfile();
+      this.getCategories();
+    }
+  }
+
+  addCategory(categoryId){
+    console.log(this.user);
+    if(this.user.categories && this.user.categories.length >0){
+// add - Category
+this.user.categories.push(categoryId);
+this.updateProfile();
+this.getCategories();
+
+    }else{
+     this.user.categories.push(categoryId);
+     this.updateProfile();
+     this.getCategories();
+    }
+
+  }
+
+  updateProfile(){
+    return this.api.updateProfile(localStorage.getItem('uid'), this.user);
+  }
 
 
 }

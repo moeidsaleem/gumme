@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content no-padding>
-  <ion-grid>
+  <ion-grid *ngIf="user">
     <ion-row>
       <ion-col ion-col text-left no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
         <ion-searchbar text-left class="searchbar"></ion-searchbar>
@@ -44,8 +44,8 @@
             </ion-col>
             <ion-col ion-col text-left no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6
               style="font-size:30px;margin-top:17px">
-              <ion-icon class="icon" name="add-circle" color="primary"></ion-icon>
-            </ion-col>
+              <ion-icon class="icon" name="add-circle" color="primary" *ngIf="findCategory(x.id) == false"  (click)="addCategory(x.id)" ></ion-icon>
+              <ion-icon class="icon" name="remove-circle" color="danger" *ngIf="findCategory(x.id) == true" (click)="removeCategory(x.id)"></ion-icon>            </ion-col>
           </ion-row><br>
         </ion-grid>
       </div>
@@ -66,13 +66,13 @@
             </ion-col>
             <ion-col ion-col text-left no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6
               style="font-size:30px;margin-top:17px">
-              <ion-icon class="icon" name="add-circle" color="primary"></ion-icon>
-            </ion-col>
+              <ion-icon class="icon" name="add-circle" color="primary" *ngIf="findCategory(x.id) == false"  (click)="addCategory(x.id)" ></ion-icon>
+              <ion-icon class="icon" name="remove-circle" color="danger" *ngIf="findCategory(x.id) == true" (click)="removeCategory(x.id)"></ion-icon>            </ion-col>
           </ion-row><br>
         </ion-grid>
       </div>
       <div *ngSwitchCase="'instore'">
-        <ion-grid *ngIf="instore">
+        <ion-grid *ngIf="instore ">
           <ion-row *ngFor="let x of instore">
             <ion-col ion-col text-left no-padding col-2 col-sm-2 col-md-2 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
               <ion-avatar item-start>
@@ -88,7 +88,8 @@
             </ion-col>
             <ion-col ion-col text-left no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6
               style="font-size:30px;margin-top:17px">
-              <ion-icon class="icon" name="add-circle" color="primary"></ion-icon>
+              <ion-icon class="icon" name="add-circle" color="primary" *ngIf="findCategory(x.id) == true"  (click)="addCategory(x.id)" ></ion-icon>
+              <ion-icon class="icon" name="remove-circle" color="danger" *ngIf="findCategory(x.id) == false" (click)="removeCategory(x.id)"></ion-icon>
             </ion-col>
           </ion-row><br>
         </ion-grid>

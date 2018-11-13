@@ -1,3 +1,4 @@
+import { AddDealPage } from './../pages/add-deal/add-deal';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -29,17 +30,22 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 
 
+import { AndroidPermissions } from '@ionic-native/android-permissions';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+
+
+// Declartion
 @NgModule({
   declarations: [
     MyApp,
     FavoritePage,
     HomePage,
-
     TabsPage,
     CategoryPage,
     ProfilePage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    AddDealPage
   ],
   imports: [
     BrowserModule,
@@ -68,17 +74,19 @@ import { RegisterPage } from '../pages/register/register';
     ProfilePage,
     FavoritePage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    AddDealPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiProvider,
     HelperProvider,
     AuthProvider,
-    InAppBrowser
+    InAppBrowser,
+    AndroidPermissions,
+    Camera
   ]
 })
 export class AppModule {}

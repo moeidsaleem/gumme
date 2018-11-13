@@ -43,12 +43,15 @@ export class ApiProvider {
   getDeal(id){
     return this.afs.doc('deals').valueChanges();
   }
+  getUserDeals(id){
+    return this.afs.collection('deals', ref=> ref.where('userId','==',id)).snapshotChanges();
+  }
   getApprovedDeals(){
     return this.afs.collection('deals', ref=> ref.where('approved','==','approved')).snapshotChanges();
   }
 
-  addDeal(id,data){
-    return this.afs.doc('deals/'+id).set(data);
+  addDeal(data){
+    return this.afs.collection('deals').add(data);
 
   }
   updateDeal(id,data){

@@ -42,44 +42,15 @@
              </ion-col>
       </ion-row><br>
 
-      <ion-row>
-          <ion-col no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
-              <ion-label error-field no-margin>Password</ion-label>
-              <ion-label class="pass-label" error-field no-margin (click)="ClickToChangePassword()">Change password</ion-label>
-              <ion-label error-field no-margin></ion-label>
-               </ion-col>
-        </ion-row><br><br>
 
-        <ion-row>
-            <ion-col no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
-                <div class="App-info" padding>
-                    <p class="p">APP</p>
-                  </div>
-                 </ion-col>
-          </ion-row><br>
 
-          <ion-row>
-              <ion-col no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
-                  <ion-label error-field no-margin>My data</ion-label>
-                  <ion-label class="pass-label" error-field no-margin (click)="ClickToDataRequest()">Collect my data</ion-label>
-                  <ion-label error-field no-margin></ion-label>
-                   </ion-col>
-            </ion-row><br><br>
-
-            <ion-row>
-                <ion-col no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
-                    <ion-label error-field no-margin>Account</ion-label>
-                    <ion-label class="pass-label" error-field no-margin (click)="ClickToDeleteAccount()">Delete my account</ion-label>
-                    <ion-label error-field no-margin></ion-label>
-                     </ion-col>
-              </ion-row><br><br><br>
 
               <ion-row>
                   <ion-col ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
 
                   </ion-col>
                   <ion-col ion-col text-center no-padding col-10 col-sm-10 col-md-10 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
-                <button class="btn" (click)="logout()" ion-button block default-button text-capitalize box-shadow type="button">LOG OUT</button>
+                <button class="btn" (click)="logout()" ion-button block default-button text-capitalize box-shadow type="button" (click)="updateProfile()">UPDATE PROFILE</button>
                   </ion-col>
                   <ion-col ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
 

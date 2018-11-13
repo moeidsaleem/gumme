@@ -7,12 +7,25 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>fetchdata</ion-title>
+    <ion-title>My Deals</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-list *ngIf="deals">
+    <ion-item *ngFor="let x of deals" style="background-color:rgba(0, 0, 0, 0.082);" >
+      <ion-thumbnail item-left>
+        <img [src]="x.photo || './assets/imgs/deal.png'">
+      </ion-thumbnail>
+      <h2>{{x?.title}}</h2>
+      <p>{{x?.description}}</p>
+      <ion-badge  color="success" *ngIf="x.approved == 'approved'">Approved</ion-badge>
+      <ion-badge  color="warning" *ngIf="x.approved == 'pending' || false">Pending</ion-badge>
+      <ion-badge  color="danger" *ngIf="x.approved == ('cancel' || false)">Cancelled</ion-badge>
+
+    </ion-item>
+  </ion-list>
 
 </ion-content>
