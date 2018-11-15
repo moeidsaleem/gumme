@@ -88,8 +88,26 @@ addFavorite(data){
 }
 
 
+/* INIVTGES */
 
+getInvites(){
+  return this.afs.collection('invites').snapshotChanges();
+}
+getInvite(id){
+  return this.afs.doc('invites/'+id).valueChanges();
+}
+approveInvite(id, status){ /*  approved | pending  */
+  return this.afs.doc('invites/'+id).update({
+    status: status
+  });
+}
 
+deleteInvite(id){
+  return this.afs.doc('invites/'+id).delete();
+}
+updateInvite(id, data){
+  return this.afs.doc('invites/'+id).update(data);
+}
 
 
 

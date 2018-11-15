@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+
 @IonicPage()
 @Component({
   selector: 'page-category',
@@ -24,21 +25,43 @@ export class CategoryPage {
   deals;
   online;
   instore;
-  segment='all'
+  segment='';
+  categories;
 
+
+  terms='';
+descending: boolean = false;
+order: number;
+column: string = 'title';
+
+sort(){
+  this.descending = !this.descending;
+  this.order = this.descending ? 1 : -1;
+}
+
+
+
+show(x){
+  console.log(x);
+  this.navCtrl.push('DealPage',x);
+}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CategoryPage');
 
 /* now we have the deals. */
+this.getDeals();
 this.getCategories();
   }
 
 
 
+  goBack(){
+    this.navCtrl.pop();
+  }
+
   getCategories(){
     this.getUser();
-
     this.api.getAllCategories().pipe(
       map(actions=> actions.map(a=>{
         const data = a.payload.doc.data();
@@ -55,9 +78,9 @@ this.getCategories();
       }))
     ).subscribe(resp=>{
       console.log(resp);
-      this.deals = resp;
-      this.online = this.deals.filter(val => val.type =='online');
-      this.instore = this.deals.filter(val => val.type =='instore');
+      this.categories = resp;
+      this.online = this.categories.filter(val => val.type =='online');
+      this.instore = this.categories.filter(val => val.type =='instore');
     });
   }
 
@@ -113,6 +136,29 @@ this.getCategories();
 
   updateProfile(){
     return this.api.updateProfile(localStorage.getItem('uid'), this.user);
+  }
+
+
+
+
+  getDeals(){
+    this.api.getApprovedDeals().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data();
+        const id = a.payload.doc.id;
+        // let liked = false;
+        // let found = this.user.likes.find(function(element) {
+        //   return element.id == localStorage.getItem('uid');  /* if dealID ==  */
+        // });
+        // if(found){
+        //   liked =true;
+        // }
+        return { id, ...data };
+      }))
+    ).subscribe(resp=>{
+      console.log(resp);
+      this.deals = resp;
+    });
   }
 
 

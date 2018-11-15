@@ -38,8 +38,8 @@ basically show the data from the deal here
 
   </ion-row>
   <ion-row>
-      <ion-col col-4 style="font-size: 30px">
-         <span class="pricex">{{deal.price || '-20%'}} </span>
+      <ion-col col-4 style="font-size: 24px">
+         <span class="pricex">{{deal?.price || '-20%'}} </span>
         </ion-col>
     <ion-col col-8 text-left>
     <h1>  {{deal.title || 'Coupon Title'}} </h1>
@@ -48,6 +48,16 @@ basically show the data from the deal here
           {{deal?.description || ' Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis architecto optio expedita voluptas odio eaque eveniet consequatur modi ipsa placeat. Voluptas id nobis aspernatur ab voluptatibus ullam cupiditate. Illo, velit!'}}
         </p>
     </ion-col>
+
+    <div class="footx">
+      Brand: {{deal?.brand}}
+      <br>
+      <!-- Launched Date: {{deal?.startDate | amTimeAgo:true}} -->
+      <br>
+      <small> Ends in
+          <span style="color:red">{{deal?.endDate }} </span>
+        </small>
+    </div>
   </ion-row>
 
 

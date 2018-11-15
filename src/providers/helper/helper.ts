@@ -25,6 +25,7 @@ export class HelperProvider {
 
 
 
+
   load() {
     this.loader = this.loadingCtrl.create({
       content: ''

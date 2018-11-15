@@ -1,3 +1,5 @@
+import { SearchPipe } from './../pipes/search/search';
+
 import { AddDealPage } from './../pages/add-deal/add-deal';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -32,6 +34,8 @@ import { RegisterPage } from '../pages/register/register';
 
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { MomentModule } from 'angular2-moment';
+import { SortPipe } from '../pipes/sort/sort';
 
 
 // Declartion
@@ -45,13 +49,23 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
     ProfilePage,
     LoginPage,
     RegisterPage,
-    AddDealPage
+    AddDealPage,
+    SearchPipe,
+    SortPipe
   ],
   imports: [
     BrowserModule,
     NgxQRCodeModule,
     DirectivesModule,
-    IonicModule.forRoot(MyApp),
+    MomentModule,
+    IonicModule.forRoot(MyApp,{
+      menuType: 'push',
+      platforms: {
+        ios: {
+          menuType: 'overlay',
+        }
+      }
+    }),
     AngularFireModule.initializeApp({
       apiKey: "AIzaSyAnCvBpgYkw9VEk5imjWuQNv0HNyHRKcMQ",
       authDomain: "gummee-dfa2e.firebaseapp.com",

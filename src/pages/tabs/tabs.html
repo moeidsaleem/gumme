@@ -1,7 +1,78 @@
-<ion-tabs>
+<!-- <ion-tabs >
   <ion-tab [root]="tab1Root" tabIcon="home"></ion-tab>
   <ion-tab [root]="tab2Root" tabIcon="settings"></ion-tab>
   <ion-tab [root]="tab3Root"  tabIcon="star"></ion-tab>
   <ion-tab [root]="tab4Root" tabIcon="person"></ion-tab>
 </ion-tabs>
+ -->
 
+ <!-- <ion-menu [content]="mycontent">
+    <ion-content>
+      <ion-list>
+        <ion-item >
+          <ion-avatar item-left>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx1KyXUF5JPMgtFk8vaAhhOI7_T3zi6JcQw4NB6Sqf5Xr5noXV">
+          </ion-avatar>
+          <h2>GUMME</h2>
+          <p>Deals at your doorstep</p>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="add"></ion-icon>
+          Home
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu> -->
+
+  <style>
+
+  </style>
+  <ion-menu id="menu" [content]="mycontent" style="font-family: 'Montserrat', sans-serif;">
+      <ion-content class="content" style="margin-top:30px">
+          <div class="info" text-center >
+              <div class="info_img">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx1KyXUF5JPMgtFk8vaAhhOI7_T3zi6JcQw4NB6Sqf5Xr5noXV" alt="" width="100px">
+              </div>
+              <div class="info_username">Moeid Saleem Khan</div>
+              <div class="info_tip">Influencer</div>
+          </div>
+
+          <ion-list>
+              <hr>
+
+            <ion-list-header text-center>
+              Gumme
+            </ion-list-header>
+            <ion-item class="menu_item" class="hoverx" (click)="goHome()">
+                <ion-icon name="home" class="iconx"></ion-icon>
+                Home
+              </ion-item>
+            <ion-item class="menu_item" class="hoverx" (click)="goSaved()">
+              <ion-icon name="star"></ion-icon>
+              Saved Deals
+            </ion-item>
+            <ion-item class="menu_item" class="hoverx" (click)="goSettings()">
+              <ion-icon name="md-settings"></ion-icon>
+              Settings
+              </ion-item>
+              <ion-item class="menu_item" class="hoverx" (click)="goProfile()">
+                  <ion-icon name="md-person"></ion-icon>
+                  Profile
+                  </ion-item>
+                  <ion-item class="menu_item" class="hoverx">
+                      <ion-icon name="power"></ion-icon>
+            Logout
+                      </ion-item>
+          </ion-list>
+
+          <!-- <div class="logout" menuClose (click)="logout()">
+            <ion-icon name="power"></ion-icon>
+            Logout
+          </div> -->
+      </ion-content>
+  </ion-menu>
+
+
+
+
+  <ion-nav #mycontent [root]="tab1Root" style="font-family: 'Montserrat', sans-serif;"></ion-nav>

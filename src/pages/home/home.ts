@@ -1,9 +1,12 @@
+import { CategoryPage } from './../category/category';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AddDealPage } from '../add-deal/add-deal';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'page-home',
@@ -18,7 +21,9 @@ export class HomePage {
   }
 
 
-
+  goCategory(){
+    this.navCtrl.push(CategoryPage);
+  }
 
   addDeal(){
     console.log(`adding this deal`);
