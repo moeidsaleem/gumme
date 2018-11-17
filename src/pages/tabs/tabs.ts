@@ -45,7 +45,7 @@ tab4Root = ProfilePage;
   }
 
   goHome(){
-    this.navCtrl.push(TabsPage);
+    this.navCtrl.setRoot(TabsPage);
   }
   goSaved(){
     this.navCtrl.push(FavoritePage);
