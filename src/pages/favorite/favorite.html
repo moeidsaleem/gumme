@@ -21,9 +21,9 @@
 <ion-content padding>
     <ion-grid *ngIf="favorites">
         <ion-row>
-          <ion-col ion-col text-left no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+          <!-- <ion-col ion-col text-left no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
             <ion-searchbar text-left class="searchbar"></ion-searchbar>
-          </ion-col>
+          </ion-col> -->
         </ion-row><br>
         <div *ngFor="let x of favorites" (click)="show(x)">
           <ion-row style="max-height: 50px !important">

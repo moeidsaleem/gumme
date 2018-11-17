@@ -1,3 +1,4 @@
+import { SettingsPage } from './../pages/settings/settings';
 import { SearchPipe } from './../pipes/search/search';
 
 import { AddDealPage } from './../pages/add-deal/add-deal';
@@ -43,6 +44,7 @@ import { SortPipe } from '../pipes/sort/sort';
   declarations: [
     MyApp,
     FavoritePage,
+    SettingsPage,
     HomePage,
     TabsPage,
     CategoryPage,
@@ -87,6 +89,7 @@ import { SortPipe } from '../pipes/sort/sort';
     CategoryPage,
     ProfilePage,
     FavoritePage,
+    SettingsPage,
     LoginPage,
     RegisterPage,
     AddDealPage

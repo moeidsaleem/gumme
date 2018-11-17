@@ -51,7 +51,7 @@ tab4Root = ProfilePage;
     this.navCtrl.push(FavoritePage);
   }
   goSettings(){
-    this.navCtrl.push('SettingsPage');
+    this.navCtrl.push(SettingsPage);
 
   }
 

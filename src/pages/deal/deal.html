@@ -67,7 +67,7 @@ basically show the data from the deal here
     <ion-col text-center col-12>
 
       <b style="color:rgba(0, 0, 0, 0.5)"> The Deal Ends In
-          <span style="color:red">{{deal?.endDate || '42 Hours' }} </span>
+          <span style="color:red">{{deal?.endDate  | amTimeAgo:true }} </span>
         </b>
 
     </ion-col>
