@@ -1,14 +1,14 @@
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar hideBackButton="true" color="primary" >
       <button ion-button menuToggle icon-only>
 <ion-icon name="menu" color="light"></ion-icon>
 
       </button>
-    <ion-title>GUMEE</ion-title>
+    <ion-title></ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content no-padding *ngIf="deals">
-  <ion-grid style="background-color:rgba(0, 0, 0, 0.075)" >
+<ion-content  no-padding style="margin-top:-10px">
+  <ion-grid *ngIf="deals"  style="background-color:rgba(0, 0, 0, 0.075)" >
     <ion-row *ngFor="let x of deals" (click)="show(x)">
       <ion-card class="card-background-page">
         <ion-grid no-padding>
@@ -22,16 +22,21 @@
                 <!-- <div class="card-subtitle">{{x?.description}}</div> -->
               </div>
               <div class="card-footer" style="text-align: center;" text-center>
-                <hr style="width:100%;">
+               <!-- <hr style="width:100%;">
                 <small style="color:#00aeef"> {{x?.brand}}</small>
                 <br>
-                <small> Ends in
+                 <small> Ends in
                   <span style="color:red">{{x?.endDate | amTimeAgo:true}} </span>
-                </small>
+                </small> -->
               </div>
+
+              <span style="position: absolute;bottom:0;right:0;margin-right:14px;">
+              <ion-icon name="arrow-forward" large style="font-size:30px"></ion-icon>
+              </span>
             </ion-col>
           </ion-row>
         </ion-grid>
+
       </ion-card>
     </ion-row>
   </ion-grid>

@@ -1,12 +1,13 @@
 <ion-header>
 
-    <ion-navbar>
+    <ion-navbar hideBackButton="true">
+      <ion-buttons left>
+        <button ion-button navPop icon-only>
+         <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+       </button>
+       </ion-buttons>
       <ion-title>ADD DEAL</ion-title>
-      <ion-buttons end  (click)="updateProfile()">
-          <button ion-button icon-only >
-              <ion-icon name="sync"></ion-icon>
-            </button>
-        </ion-buttons>
+
 
     </ion-navbar>
     <div class="info" padding>
@@ -59,8 +60,10 @@
         <ion-row>
             <ion-col no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
                 <ion-label error-field no-margin>Photo</ion-label>
-                <ion-input class="input" text-left type="text" name="photo" [(ngModel)]="deal.photo"></ion-input>
-                <ion-label error-field no-margin></ion-label>
+                <!-- <ion-input class="input" text-left type="text" name="photo" [(ngModel)]="deal.photo"></ion-input>
+                <ion-label error-field no-margin></ion-label> -->
+                <img (click)="takePicture()"
+                [src]="deal.photo ||  'https://vignette.wikia.nocookie.net/undertale-rho/images/5/5f/Placeholder.jpg/revision/latest?cb=20180213155916'" alt="" class="img-thumbnail">
                  </ion-col>
         </ion-row><br>
         <ion-row>

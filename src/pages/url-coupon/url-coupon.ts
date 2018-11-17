@@ -13,7 +13,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-url-coupon',
   templateUrl: 'url-coupon.html',
 })
-export class UrlCouponPage {
+export class UrlCouponPage { goBack(){ this.navCtrl.pop(); }
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

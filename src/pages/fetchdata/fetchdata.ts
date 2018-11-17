@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { map } from 'rxjs/operators';
+import { AddDealPage } from '../add-deal/add-deal';
 
 /**
  * Generated class for the FetchdataPage page.
@@ -15,7 +16,7 @@ import { map } from 'rxjs/operators';
   selector: 'page-fetchdata',
   templateUrl: 'fetchdata.html',
 })
-export class FetchdataPage {
+export class FetchdataPage { goBack(){ this.navCtrl.pop(); }
 
   constructor(public navCtrl: NavController, private api:ApiProvider,
     public navParams: NavParams) {
@@ -44,5 +45,12 @@ export class FetchdataPage {
 
     })
   }
+
+
+  addDeal(){
+    console.log(`adding this deal`);
+    this.navCtrl.push(AddDealPage);
+
+    }
 
 }

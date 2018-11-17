@@ -14,7 +14,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
   selector: 'page-barcode-coupon',
   templateUrl: 'barcode-coupon.html',
 })
-export class BarcodeCouponPage {
+export class BarcodeCouponPage { goBack(){ this.navCtrl.pop(); }
 
   constructor(public navCtrl: NavController, private iab:InAppBrowser,
      public navParams: NavParams) {

@@ -88,10 +88,11 @@ addFavorite(data){
 }
 
 
-/* INIVTGES */
+/* INIVTES */
 
 getInvites(){
-  return this.afs.collection('invites').snapshotChanges();
+  let id = localStorage.getItem('uid');
+  return this.afs.collection('invites', ref=> ref.where('userId','==',id)).snapshotChanges();
 }
 getInvite(id){
   return this.afs.doc('invites/'+id).valueChanges();

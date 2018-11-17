@@ -16,6 +16,9 @@ import { map } from 'rxjs/operators';
   templateUrl: 'favorite.html',
 })
 export class FavoritePage{
+  goBack(){
+    this.navCtrl.pop();
+  }
 
   deals;
   favorites;

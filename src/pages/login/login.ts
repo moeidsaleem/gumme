@@ -5,6 +5,7 @@ import { ApiProvider } from '../../providers/api/api';
 import { HelperProvider } from '../../providers/helper/helper';
 import { TabsPage } from '../tabs/tabs';
 import { RegisterPage } from '../register/register';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the LoginPage page.
@@ -20,9 +21,12 @@ import { RegisterPage } from '../register/register';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, private auth:AuthProvider,private api:ApiProvider,private helper:HelperProvider,
-    public navParams: NavParams) {
+  constructor(private navCtrl: NavController, private auth:AuthProvider,private api:ApiProvider,private helper:HelperProvider,
+    private navParams: NavParams) {
   }
+  goBack(){
+    this.navCtrl.pop();
+   }
 
   user={
     email:'',

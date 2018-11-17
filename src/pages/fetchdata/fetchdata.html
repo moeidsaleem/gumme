@@ -6,8 +6,14 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar hideBackButton="true">
+      <ion-buttons left>
+          <button ion-button navPop icon-only>
+           <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+         </button>
+         </ion-buttons>
     <ion-title>My Deals</ion-title>
+
   </ion-navbar>
 
 </ion-header>
@@ -17,15 +23,21 @@
   <ion-list *ngIf="deals">
     <ion-item *ngFor="let x of deals" style="background-color:rgba(0, 0, 0, 0.082);" >
       <ion-thumbnail item-left>
-        <img [src]="x.photo || './assets/imgs/deal.png'">
+        <img [src]="x.photo || './assets/imgs/deals.png'">
       </ion-thumbnail>
       <h2>{{x?.title}}</h2>
       <p>{{x?.description}}</p>
       <ion-badge  color="success" *ngIf="x.approved == 'approved'">Approved</ion-badge>
       <ion-badge  color="warning" *ngIf="x.approved == 'pending' || false">Pending</ion-badge>
-      <ion-badge  color="danger" *ngIf="x.approved == ('cancel' || false)">Cancelled</ion-badge>
+      <ion-badge  color="danger" *ngIf="x.approved == ('decline' || false)">Decline</ion-badge>
 
     </ion-item>
   </ion-list>
-
+  <ion-fab right bottom (tap)="addDeal()">
+      <button ion-fab color="primary" icon-only><ion-icon name="add-circle" color="light"></ion-icon></button>
+  </ion-fab>
 </ion-content>
+
+<ion-footer>
+
+</ion-footer>

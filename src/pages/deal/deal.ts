@@ -19,6 +19,7 @@ import { ApiProvider } from '../../providers/api/api';
 })
 export class DealPage {
 
+
   constructor(public navCtrl: NavController,private helper:HelperProvider, private api:ApiProvider,
      public navParams: NavParams, private iab:InAppBrowser) {}
 
@@ -29,7 +30,9 @@ export class DealPage {
     this.deal = this.navParams.data;
   }
 
-
+  goBack(){
+    this.navCtrl.pop();
+  }
 
   go(){
     //time to check the type of the dealType i.e  instore || online

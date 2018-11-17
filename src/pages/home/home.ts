@@ -1,6 +1,6 @@
 import { CategoryPage } from './../category/category';
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, MenuController } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -12,11 +12,12 @@ import * as moment from 'moment';
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage { goBack(){ this.navCtrl.pop(); }
 
   deals;
   user;
-  constructor(public navCtrl: NavController,private api:ApiProvider) {
+  constructor(public navCtrl: NavController,private menuCtrl:MenuController,
+    private api:ApiProvider) {
     this.getDeals();
   }
 
@@ -24,6 +25,9 @@ export class HomePage {
   goCategory(){
     this.navCtrl.push(CategoryPage);
   }
+  ionViewWillEnter() { this.menuCtrl.enable(true) }
+
+
 
   addDeal(){
     console.log(`adding this deal`);
@@ -61,26 +65,6 @@ getDeals(){
     this.deals = resp;
   });
 }
-  // deals=[
-  // {
-  //   id:'',
-  //   brand:'',
-  //   brandContact:'',
-  //   category:'',
-  //   categoryId:'',
-  //   code:'',
-  //   description:'',
-  //   endDate:'',
-  //   startDate:'',
-  //   link:'',
-  //   photo:'',
-  //   price:'',
-  //   title:'',
-  //   //instoreDeal
-  //   dealType:'',  // > instore || online  (instore deal will be added by admininstrator.)
-  //   couponType:'', // > qrcode || barcode || url
-  //   approved:'' // pending , approved, cancel
-  // }
-  // ]
+
 
 }

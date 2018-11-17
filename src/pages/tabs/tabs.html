@@ -24,19 +24,16 @@
     </ion-content>
   </ion-menu> -->
 
-  <style>
 
-  </style>
   <ion-menu id="menu" [content]="mycontent" style="font-family: 'Montserrat', sans-serif;">
       <ion-content class="content" style="margin-top:30px">
           <div class="info" text-center >
               <div class="info_img">
                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx1KyXUF5JPMgtFk8vaAhhOI7_T3zi6JcQw4NB6Sqf5Xr5noXV" alt="" width="100px">
               </div>
-              <div class="info_username">Moeid Saleem Khan</div>
-              <div class="info_tip">Influencer</div>
+              <div class="info_username">{{user?.name}}</div>
+              <div class="info_tip">{{user?.email}}</div>
           </div>
-
           <ion-list>
               <hr>
 
@@ -59,16 +56,11 @@
                   <ion-icon name="md-person"></ion-icon>
                   Profile
                   </ion-item>
-                  <ion-item class="menu_item" class="hoverx">
+                  <ion-item class="menu_item" class="hoverx" (click)="logout()">
                       <ion-icon name="power"></ion-icon>
             Logout
                       </ion-item>
           </ion-list>
-
-          <!-- <div class="logout" menuClose (click)="logout()">
-            <ion-icon name="power"></ion-icon>
-            Logout
-          </div> -->
       </ion-content>
   </ion-menu>
 

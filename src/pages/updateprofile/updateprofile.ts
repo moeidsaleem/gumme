@@ -5,6 +5,7 @@ import { ApiProvider } from '../../providers/api/api';
 import { AuthProvider } from '../../providers/auth/auth';
 import { HelperProvider } from '../../providers/helper/helper';
 import { LoginPage } from '../login/login';
+import {Camera, CameraOptions } from '@ionic-native/camera';
 
 /**
  * Generated class for the UpdateprofilePage page.
@@ -18,9 +19,9 @@ import { LoginPage } from '../login/login';
   selector: 'page-updateprofile',
   templateUrl: 'updateprofile.html',
 })
-export class UpdateprofilePage {
+export class UpdateprofilePage { goBack(){ this.navCtrl.pop(); }
 
-  constructor(private api:ApiProvider,private helper:HelperProvider, private auth:AuthProvider,
+  constructor(private api:ApiProvider,private helper:HelperProvider, private auth:AuthProvider,private camera: Camera,
     public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -53,6 +54,23 @@ export class UpdateprofilePage {
   }
 
 
+  options: CameraOptions = {
+    quality: 100,
+    destinationType: this.camera.DestinationType.FILE_URI,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE
+  }
+
+  takePicture(){
+    this.camera.getPicture(this.options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.user.photo = base64Image;
+     }, (err) => {
+      // Handle error
+     });
+  }
 
   logout(){
     this.helper.load();

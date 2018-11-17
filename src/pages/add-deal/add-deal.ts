@@ -1,3 +1,4 @@
+import {Camera, CameraOptions } from '@ionic-native/camera';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
@@ -16,13 +17,15 @@ import { map } from 'rxjs/operators';
   selector: 'page-add-deal',
   templateUrl: 'add-deal.html',
 })
-export class AddDealPage {
+export class AddDealPage { goBack(){ this.navCtrl.pop(); }
 
+photo
 
   user;
   categories;
 
-  constructor(public navCtrl: NavController, private api:ApiProvider,private helper:HelperProvider,
+  constructor(public navCtrl: NavController,private camera: Camera,
+     private api:ApiProvider,private helper:HelperProvider,
     public navParams: NavParams) {
   }
 
@@ -74,6 +77,27 @@ export class AddDealPage {
     // update-profile .....,,,
 
   }
+
+
+ options: CameraOptions = {
+  quality: 100,
+  destinationType: this.camera.DestinationType.FILE_URI,
+  encodingType: this.camera.EncodingType.JPEG,
+  mediaType: this.camera.MediaType.PICTURE
+}
+
+
+  takePicture(){
+    this.camera.getPicture(this.options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.deal.photo = base64Image;
+     }, (err) => {
+      // Handle error
+     });
+  }
+
 
   getCategories(){
     this.api.getOnlineCategories().pipe(

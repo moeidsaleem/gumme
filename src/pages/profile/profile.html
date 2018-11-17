@@ -6,13 +6,13 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
+  <ion-navbar hideBackButton="true" color="primary">
     <ion-title>profile</ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="showLogout()">
-        <ion-icon name="log-out"></ion-icon>
-      </button>
-    </ion-buttons>
+    <ion-buttons left>
+        <button ion-button navPop icon-only>
+         <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+       </button>
+       </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -71,6 +71,7 @@
 
 </ion-content>
 <ion-footer>
+
  <ion-row>
    <ion-col text-center>
   <small style="color:rgba(0, 0, 0, 0.164)"> GUMME v2.0.0 </small>

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FirebaseAuth } from '@angular/fire';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { HelperProvider } from '../helper/helper';
+import { NavParams } from 'ionic-angular';
 
 /*
   Generated class for the AuthProvider provider.
@@ -10,6 +12,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 */
 @Injectable()
 export class AuthProvider {
+
+
 
 
   user;
@@ -35,12 +39,21 @@ saveToken(uid){
 }
 
 getToken(){
-  return localStorage.getItem('uid')
+  return localStorage.getItem('uid');
 }
 
-changePassword(password, newPassword){
-  return this.afAuth.auth.confirmPasswordReset(password, newPassword).then(res=>{
-    console.log(`password updated`)
+changePassword(email,oldPassword, newPassword){
+
+ return this.afAuth.auth.signInWithEmailAndPassword(email, oldPassword).then(u=>{
+   let currentUser = u.user;
+   return currentUser.updatePassword(newPassword).then(res=>{}, err=> console.log(err.message))
+ })
+}
+
+deleteAccount(email, password){
+  return this.afAuth.auth.signInWithEmailAndPassword(email, password).then(u=>{
+    let currentUser = u.user;
+    return currentUser.delete()
   })
 }
 

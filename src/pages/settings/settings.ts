@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the Page1Page page.
+ * Generated class for the SettingsPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,16 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-page1',
-  templateUrl: 'page1.html',
+  selector: 'page-settings',
+  templateUrl: 'settings.html',
 })
-export class Page1Page { goBack(){ this.navCtrl.pop(); }
+export class SettingsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Page1Page');
+    console.log('ionViewDidLoad SettingsPage');
   }
 
 }

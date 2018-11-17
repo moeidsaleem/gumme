@@ -13,7 +13,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-qr-coupon',
   templateUrl: 'qr-coupon.html',
 })
-export class QrCouponPage {
+export class QrCouponPage { goBack(){ this.navCtrl.pop(); }
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

@@ -18,6 +18,7 @@ import { HelperProvider } from '../../providers/helper/helper';
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
+  goBack(){ this.navCtrl.pop(); }
 
   constructor(public navCtrl: NavController, private helper:HelperProvider,
     private api:ApiProvider, private auth:AuthProvider,
@@ -39,6 +40,8 @@ export class ProfilePage {
   goEdit(){
     this.navCtrl.push('UpdateprofilePage', this.user);
   }
+
+
 
 
   go(page:any){

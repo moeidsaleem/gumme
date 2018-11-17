@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { ApiProvider } from '../../providers/api/api';
+import { HelperProvider } from '../../providers/helper/helper';
 
 /**
  * Generated class for the ChangepasswordPage page.
@@ -15,22 +16,39 @@ import { ApiProvider } from '../../providers/api/api';
   selector: 'page-changepassword',
   templateUrl: 'changepassword.html',
 })
-export class ChangepasswordPage {
+export class ChangepasswordPage { goBack(){ this.navCtrl.pop(); }
 
-  constructor(public navCtrl: NavController,private auth:AuthProvider,private api:ApiProvider,
+  constructor(public navCtrl: NavController,private auth:AuthProvider,private helper:HelperProvider,
+    private api:ApiProvider,
      public navParams: NavParams) {
   }
   user;
-  newPass;
+  newPassword;
+  againPassword;
+  oldPassword;
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChangepasswordPage');
     this.user = this.navParams.data;
+    console.log(this.user);
   }
 
 
 
-  ChangePassword(newPassword){
-    this.auth.changePassword(this.user.password, newPassword);
+
+  ChangePassword(){
+    if(this.user.password === this.oldPassword){
+
+      if(this.newPassword === this.againPassword){
+        //change password
+        this.auth.changePassword(this.user.email, this.oldPassword, this.newPassword).then(res=>{
+          this.helper.toast(`Password Updated`)
+        })
+      }
+
+    }else{
+      this.helper.toast(`Incorrect Old passowrd.`)
+    }
 
   }
 }
