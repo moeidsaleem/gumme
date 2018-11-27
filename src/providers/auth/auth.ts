@@ -16,6 +16,8 @@ export class AuthProvider {
 
 
 
+
+  showSidebar = false;
   user;
   constructor(private afAuth:AngularFireAuth) {
     console.log('Hello AuthProvider Provider');

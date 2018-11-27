@@ -37,6 +37,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { MomentModule } from 'angular2-moment';
 import { SortPipe } from '../pipes/sort/sort';
+import { SimpleDealsPage } from '../pages/simple-deals/simple-deals';
 
 
 // Declartion
@@ -53,6 +54,7 @@ import { SortPipe } from '../pipes/sort/sort';
     RegisterPage,
     AddDealPage,
     SearchPipe,
+    SimpleDealsPage,
     SortPipe
   ],
   imports: [
@@ -92,7 +94,8 @@ import { SortPipe } from '../pipes/sort/sort';
     SettingsPage,
     LoginPage,
     RegisterPage,
-    AddDealPage
+    AddDealPage,
+    SimpleDealsPage
   ],
   providers: [
     StatusBar,

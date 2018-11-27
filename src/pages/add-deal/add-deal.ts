@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { HelperProvider } from '../../providers/helper/helper';
 import { map } from 'rxjs/operators';
+import * as moment from 'moment';
 
 /**
  * Generated class for the AddDealPage page.
@@ -40,14 +41,13 @@ photo
     this.deal.userId = localStorage.getItem('uid');
     this.deal = {...this.deal, ...this.selectedCategory};
     console.log(this.deal);
-
     this.helper.load();
     console.log(this.deal);
     this.api.addDeal(this.deal).then(resp=>{
       console.log(resp);
       this.helper.toast(`Deal sent for approval from admin!`);
       this.navCtrl.pop().then(()=> this.helper.dismiss());
-    })
+    });
   }
 
   deal={
@@ -60,7 +60,7 @@ photo
     categoryId:'',
     code:'',
     couponType:'online',
-    dealType:'instore',
+    dealType:'online',
     description:'',
     startDate:'',
     endDate:'',
