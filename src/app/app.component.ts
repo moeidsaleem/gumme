@@ -3,7 +3,6 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
 import { TabsPage } from '../pages/tabs/tabs';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { SimpleDealsPage } from '../pages/simple-deals/simple-deals';
@@ -20,7 +19,7 @@ import { AuthProvider } from '../providers/auth/auth';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = SimpleDealsPage;
+  rootPage:any = TabsPage;
   @ViewChild(Nav) nav: Nav;
   showSidebar=false;
   uid;
@@ -33,11 +32,6 @@ androidPermissions.checkPermission(androidPermissions.PERMISSION.CAMERA).then(
 androidPermissions.requestPermissions([androidPermissions.PERMISSION.CAMERA,androidPermissions.PERMISSION.GET_ACCOUNTS])
 .catch(err=> console.log(`Cordova error!`))
 
-      this.uid= localStorage.getItem('uid');
-
-      if(this.uid === null){
-        this.rootPage = SimpleDealsPage;
-      }
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
@@ -48,10 +42,6 @@ androidPermissions.requestPermissions([androidPermissions.PERMISSION.CAMERA,andr
     this.nav.pop();
  }
 
-tab1Root = HomePage;
-tab2Root = CategoryPage;
-tab3Root = FavoritePage;
-tab4Root = ProfilePage;
 
 
   user;
@@ -68,33 +58,23 @@ tab4Root = ProfilePage;
     })
   }
 
+
+
   goHome(){
     this.nav.setRoot(TabsPage);
   }
   goSaved(){
     this.nav.push(FavoritePage);
   }
+
   goSettings(){
     this.nav.push(SettingsPage);
-
   }
 
   goProfile(){
     this.nav.push(ProfilePage);
-
   }
-  // logout(){
-  //   this.helper.presentConfirm('Logout', 'Are you sure you want to logout',
-  //   'Logout', ()=>{
-  //     //on success
-  //     this.helper.load();
-  //     this.auth.logout();
-  //     this.nav.setRoot(LoginPage).then(()=> this.helper.dismiss());
-  //   }
-  //   ,'Cancel',()=>{
-  //     //oncancel
 
-  //   })
 
-  // }
+
 }

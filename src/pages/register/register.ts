@@ -29,7 +29,8 @@ export class RegisterPage{
     phone:'',
     password:'',
     name:'',
-    categories:[]
+    categories:[],
+    deals:[]
   }
 
   ionViewDidLoad() {

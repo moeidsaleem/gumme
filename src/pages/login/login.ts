@@ -40,6 +40,7 @@ export class LoginPage {
   err;
   login(){
     this.helper.load();
+
     this.auth.login(this.user.email, this.user.password).then(resp=>{
       this.auth.saveToken(resp.user.uid);
       this.navCtrl.setRoot(TabsPage).then(()=> {

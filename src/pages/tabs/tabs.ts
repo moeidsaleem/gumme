@@ -19,11 +19,24 @@ import { SettingsPage } from '../settings/settings';
 
 })
 export class TabsPage {
-
   constructor(private navCtrl:NavController,private helper:HelperProvider,private api:ApiProvider,
      private auth:AuthProvider) {
-       this.getUser();
 
+  }
+
+uid;
+rootPage;
+
+
+
+  ionViewDidEnter(){
+    this.getUser();
+    this.uid= localStorage.getItem('uid');
+    if(this.uid !== null){
+      this.rootPage = HomePage;
+    }else {
+      this.rootPage = HomePage;
+    }
   }
 
   goBack(){
@@ -35,8 +48,8 @@ tab2Root = CategoryPage;
 tab3Root = FavoritePage;
 tab4Root = ProfilePage;
 
-
   user;
+
 
   getUser(){
     this.api.getProfile(localStorage.getItem('uid')).subscribe(response=>{
@@ -52,7 +65,9 @@ tab4Root = ProfilePage;
   }
   goSettings(){
     this.navCtrl.push(SettingsPage);
-
+  }
+  goLogin(){
+    this.navCtrl.setRoot(LoginPage);
   }
 
   goProfile(){
@@ -66,8 +81,7 @@ tab4Root = ProfilePage;
       this.helper.load();
       this.auth.logout();
       this.navCtrl.setRoot(LoginPage).then(()=> this.helper.dismiss());
-    }
-    ,'Cancel',()=>{
+    },'Cancel',()=>{
       //oncancel
 
     })

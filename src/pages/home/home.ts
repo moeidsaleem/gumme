@@ -18,14 +18,24 @@ export class HomePage { goBack(){ this.navCtrl.pop(); }
   user;
   constructor(public navCtrl: NavController,private menuCtrl:MenuController,
     private api:ApiProvider) {
-    this.getDeals();
+
   }
+
+  ionViewWillEnter() {
+    this.menuCtrl.enable(true);
+    if(localStorage.getItem('uid') !==null){
+      this.getProfile();
+    }else{
+      this.getDeals();
+    }
+
+  }
+
 
 
   goCategory(){
     this.navCtrl.push(CategoryPage);
   }
-  ionViewWillEnter() { this.menuCtrl.enable(true) }
 
 
 
@@ -36,12 +46,26 @@ export class HomePage { goBack(){ this.navCtrl.pop(); }
 
 show(x){
   console.log(x);
-  this.navCtrl.push('DealPage',x);
+  if(this.user){
+    this.navCtrl.push('DealPage',{
+      deal: x,
+      user: this.user
+    });
+  }else{
+    this.navCtrl.push('DealPage',x);
+  }
+
 }
+
+userDeals:any;
 
 getProfile(){
 this.api.getProfile(localStorage.getItem('uid')).subscribe(resp=>{
   this.user =resp;
+  this.userDeals = this.user.deals;
+
+  this.getDeals();
+
 });
 }
 
@@ -50,19 +74,23 @@ getDeals(){
     map(actions => actions.map(a => {
       const data = a.payload.doc.data();
       const id = a.payload.doc.id;
+      let liked = false;
 
-      // let liked = false;
-      // let found = this.user.likes.find((element)=> {
-      //   return element.id == localStorage.getItem('uid')
-      // })
-      // if(found){
-      //   liked =true;
-      // }
-      return { id, ...data };
+      if(this.user && this.user.deals){
+        let found = this.user.deals.find((element)=> {
+          return element == id;
+        })
+        if(found){
+          liked =true;
+        }
+      }
+
+      return { id,liked, ...data };
     }))
   ).subscribe(resp=>{
     console.log(resp);
     this.deals = resp;
+
   });
 }
 

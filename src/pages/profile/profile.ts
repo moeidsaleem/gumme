@@ -52,7 +52,6 @@ export class ProfilePage {
   // items check
   this.helper.presentConfirm('LOGOUT', 'Are you sure you want to logout?', 'LOGOUT',()=>{
     //logout
-
     this.auth.logout();
     this.navCtrl.setRoot(LoginPage);
   },'CANCEL',()=>{

@@ -79,12 +79,22 @@ getInstoreCategories(){
 
 
 /* --------------- FAVORITES -------------------- */
+
 getUserFavorites(){
   return this.afs.collection('favorites', ref=> ref.where('userId','==',localStorage.getItem('uid'))).snapshotChanges();
 }
 
 addFavorite(data){
+  delete data.id;
   return this.afs.collection('favorites').add(data);
+}
+
+getFavoriteDealWithId(dealId){
+  return this.afs.collection('favorites', ref=> ref.where('dealId','==',dealId)).snapshotChanges();
+}
+
+removeFavorite(dealId){
+  return this.afs.doc('favorites/'+dealId).delete();
 }
 
 

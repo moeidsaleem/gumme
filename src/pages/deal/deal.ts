@@ -1,9 +1,11 @@
+import { LoginPage } from './../login/login';
 import { HelperProvider } from './../../providers/helper/helper';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { ApiProvider } from '../../providers/api/api';
+import { map } from 'rxjs/operators';
 
 /**
  * Generated class for the DealPage page.
@@ -27,7 +29,13 @@ export class DealPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad DealPage');
     console.log(this.navParams.data);
-    this.deal = this.navParams.data;
+    if(this.navParams.data.user == undefined){
+      this.deal  = this.navParams.data;
+    }else{
+      this.deal = this.navParams.data.deal;
+      this.user = this.navParams.data.user;
+    }
+
   }
 
   goBack(){
@@ -59,17 +67,117 @@ export class DealPage {
   }
 
 
+goFavorite(){
+  if(localStorage.getItem('uid') !== null){
+    this.addToFavorites();
+  }else{
+    this.helper.presentConfirm('LOGIN', 'Create an Account or login ?','LOGIN',()=>{
+      this.navCtrl.setRoot(LoginPage);
+
+    },'CANCEL',()=>{
+
+    })
+
+  }
+}
+
+
+  user;
+  updateProfile(uid, dealId){
+
+      if(this.user.deals){
+        this.user.deals.push(dealId);
+      }else{
+        this.user.deals = [dealId];
+      }
+     return this.api.updateProfile(uid, this.user).then(()=>{
+        console.log('user deals added to profile');
+      });
+  }
 
 
 
   addToFavorites(){
-    let deal = this.deal;
-    deal.userId = localStorage.getItem('uid');
-    deal.dealId = deal.id;
-    delete deal.id;
-    this.api.addFavorite(deal).then(resp=>{
-      this.helper.toast(`added to favorites`);
+    let dx = this.deal;
+    dx.userId = localStorage.getItem('uid');
+    dx.dealId = dx.id;
+    // Time to update deal.
+    this.updateProfile(localStorage.getItem('uid'), dx.dealId)
+
+    this.helper.toast('Deal added to favorites.');
+    let d = dx;
+    this.api.addFavorite(d).then(res=>{
+      console.log('added to favorite list....');
+      this.deal.liked = true;
 
     })
+// FLUTTER - ECA
+
   }
+
+
+
+  updateRemoveProfile(uid, dealId){
+    var index = this.user.deals.indexOf(dealId);
+    if (index > -1) {
+      this.user.deals.splice(index, 1);
+    }
+    console.log(this.user);
+   return this.api.updateProfile(uid, this.user).then(()=>{
+      console.log('user deals removed profile');
+    });
+}
+
+
+
+rnx;
+  removeFromFavorite(){
+    this.deal.liked = false;
+    let deal = this.deal;
+    console.log(deal);
+    deal.userId = localStorage.getItem('uid');
+    deal.dealId = deal.id;
+    console.log(`DEAL ID is : ${deal.id}`)
+
+    // Time to update deal.
+    this.updateRemoveProfile(localStorage.getItem('uid'), deal.dealId)
+    this.api.getFavoriteDealWithId(deal.dealId) .pipe(
+          map(actions => actions.map(a => {
+            const data = a.payload.doc.data();
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          }))
+          ).subscribe(res=>{
+            this.rnx = res;
+            console.log(this.rnx);
+            if(this.rnx[0]){
+              this.deleteDeal(this.rnx[0]).then(()=>{
+              })
+            }
+
+
+
+
+    })
+
+    this.helper.toast('Deal removed from favorites.');
+  }
+
+
+  deleteDeal(data){
+    if(data){
+      console.log('0 index is..')
+      console.log(data);
+     return this.api.removeFavorite(data.id).then(()=>{
+        console.log('deal removed from list...');
+      });
+    }
+
+  }
+
+
+
+
+
+
 }

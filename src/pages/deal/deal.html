@@ -40,8 +40,9 @@ basically show the data from the deal here
 
   </ion-row>
   <ion-row style="position:absolute;top:0;text-align:right;right:0;margin-right: 12px" >
-    <ion-col  style="font-size:22px;padding-left:1rem;padding-right:1rem" (click)="addToFavorites()">
-            <ion-icon name="star-outline"></ion-icon>
+    <ion-col  style="font-size:22px;padding-left:1rem;padding-right:1rem" >
+      <ion-icon name="star-outline" *ngIf="deal.liked === false" (click)="goFavorite()"></ion-icon>
+      <ion-icon name="star" *ngIf="deal.liked === true" (click)="removeFromFavorite()"></ion-icon>
     </ion-col>
     <ion-col  style="font-size:22px" >
         <ion-icon name="share"></ion-icon>
